@@ -1,14 +1,36 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
+
 <Layout>
-	<Welcome />
+	<select id="version">
+		<option value="0.1.x">0.1.x</option>
+		<option value="1.x">1.x</option>
+		<option value="2.x">2.x</option>
+		<option value="3.x">3.x</option>
+		<option value="4.x">4.x</option>
+		<option value="5.x">5.x</option>
+		<option value="6.x">6.x</option>
+		<option value="7.x">7.x</option>
+		<option value="8.x">8.x</option>
+	</select>
 	<script>
+		const input = document.querySelector('#version');
+		let pathToRegexp;
+		const versions = {
+			// @ts-ignore
+  			'0.1.x': import('path-to-regexp-0-1'),
+  			'1.x': import('path-to-regexp-1'),
+			'2.x': import('path-to-regexp-2'),
+			'3.x': import('path-to-regexp-3'),
+			'4.x': import('path-to-regexp-4'),
+			'5.x': import('path-to-regexp-5'),
+			'6.x': import('path-to-regexp-6'),
+			'7.x': import('path-to-regexp-7'),
+			'8.x': import('path-to-regexp-8'),
+		}
+		console.log(input.value)
 		import { match } from 'path-to-regexp-8';
 		const fn = match("/*splat");
 
