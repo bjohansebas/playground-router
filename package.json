@@ -1,0 +1,25 @@
+{
+  "name": "",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "astro": "^4.16.16",
+    "path-to-regexp-0-1": "npm:path-to-regexp@0.1",
+    "path-to-regexp-1": "npm:path-to-regexp@1",
+    "path-to-regexp-2": "npm:path-to-regexp@2",
+    "path-to-regexp-3": "npm:path-to-regexp@3",
+    "path-to-regexp-4": "npm:path-to-regexp@4",
+    "path-to-regexp-5": "npm:path-to-regexp@5",
+    "path-to-regexp-6": "npm:path-to-regexp@6",
+    "path-to-regexp-7": "npm:path-to-regexp@7",
+    "path-to-regexp-8": "npm:path-to-regexp@8",
+    "typescript": "^5.7.2"
+  }
+}
