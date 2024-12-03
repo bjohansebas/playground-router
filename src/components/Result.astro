@@ -1,0 +1,26 @@
+<section class="grid grid-cols-3 gap-4">
+    <div>
+        <h2>RegExp</h2>
+        <p>Express will compile your route into the following regular expression</p>
+        <pre><code id="regexp-display">/^$/g</code></pre>
+    </div>
+    <div>
+        <h2>Keys</h2>
+        <p>Express will make the following keys available as <code>req.params.keyName</code></p>
+        <div id="keys-display"></div>
+    </div>
+    <div>
+        <h2>Results</h2>
+        <div id="path-display"></div>
+    </div>
+</section>
+
+<style>
+    h2 {
+        @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0
+    }
+
+    code {
+        @apply bg-[#5d5e60] font-bold px-2 py-0.5 rounded-md
+    }
+</style>

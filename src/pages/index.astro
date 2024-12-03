@@ -1,20 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Result from '../components/Result.astro';
+import Form from '../components/Form.astro';
 ---
 
-
 <Layout>
-	<select id="version">
-		<option value="0.1.x">0.1.x</option>
-		<option value="1.x">1.x</option>
-		<option value="2.x">2.x</option>
-		<option value="3.x">3.x</option>
-		<option value="4.x">4.x</option>
-		<option value="5.x">5.x</option>
-		<option value="6.x">6.x</option>
-		<option value="7.x">7.x</option>
-		<option value="8.x">8.x</option>
-	</select>
+	<main class="max-w-5xl mx-auto px-4 py-16 h-screen space-y-4">
+		<h1 class="text-3xl font-bold text-center">Express Playground Router</h1>
+		<Form />
+		<Result />
+	</main>
+	
 	<script>
 		const input = document.querySelector('#version');
 		let pathToRegexp;
