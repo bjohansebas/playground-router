@@ -2,19 +2,50 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-
 <Layout>
-	<select id="version">
-		<option value="0.1.x">0.1.x</option>
-		<option value="1.x">1.x</option>
-		<option value="2.x">2.x</option>
-		<option value="3.x">3.x</option>
-		<option value="4.x">4.x</option>
-		<option value="5.x">5.x</option>
-		<option value="6.x">6.x</option>
-		<option value="7.x">7.x</option>
-		<option value="8.x">8.x</option>
-	</select>
+	<main class="max-w-5xl mx-auto px-4 py-16 h-screen">
+		<form>
+			<div>
+				<label for="version">Version</label>
+				<select id="version">
+					<option value="0.1.x">0.1.x (express v4)</option>
+					<option value="1.x">1.x</option>
+					<option value="2.x">2.x</option>
+					<option value="3.x">3.x</option>
+					<option value="4.x">4.x</option>
+					<option value="5.x">5.x</option>
+					<option value="6.x">6.x</option>
+					<option value="7.x">7.x</option>
+					<option value="8.x">8.x (express v5)</option>
+				</select>
+			</div>
+			<div>
+				<label for="splat">Route</label>
+				<input type="text" id="splat" name="route" value="*"/>
+			</div>
+			<div>
+				<label for="path">Path</label>
+				<input type="text" id="path" name="path" value="/foo/bar/baz" />
+			</div>
+		</form>
+		<div>
+			<div class="span4">
+				<h2>RegExp</h2>
+				<p>Express will compile your route into the following regular expression</p>
+				<pre><code id="regexp-display">/^$/g</code></pre>
+			</div>
+			<div class="span4">
+				<h2>Keys</h2>
+				<p>Express will make the following keys available as <code>req.params.keyName</code></p>
+				<div id="keys-display"></div>
+			</div>
+			<div class="span4">
+				<h2>Results</h2>
+				<div id="path-display"></div>
+			</div>
+		</div>
+	</main>
+	
 	<script>
 		const input = document.querySelector('#version');
 		let pathToRegexp;
