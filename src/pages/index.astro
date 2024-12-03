@@ -14,6 +14,7 @@ import Form from "../components/Form.astro";
   <script>
     window.addEventListener("load", async () => {
       const $version = document.querySelector("#version");
+      const $regexpDisplay = document.querySelector("#regexp-display");
       const route = document.querySelector("#route");
 
       let pathToRegexp: { default: (arg0: any) => any };
@@ -38,6 +39,12 @@ import Form from "../components/Form.astro";
         "8.x": import("path-to-regexp-8"),
       };
 
+      const updateRegex = (input: string) => {
+        if ($regexpDisplay) {
+          $regexpDisplay.innerText = input;
+        }
+      };
+
       if ($version) {
         $version.addEventListener("change", (e) => {
           // @ts-ignore
@@ -59,9 +66,13 @@ import Form from "../components/Form.astro";
             version === "3.x" ||
             version === "1.x"
           ) {
-            console.log(pathToRegexp);
             const result = pathToRegexp.default(path);
-            console.log(result);
+            updateRegex(result);
+          } else if (version !== "8.x") {
+            const regexp = pathToRegexp;
+
+            // @ts-ignore
+            updateRegex(regexp.pathToRegexp(path));
           }
         });
       }
