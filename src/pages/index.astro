@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Result from '../components/Result.astro';
 ---
 
 <Layout>
@@ -28,22 +29,7 @@ import Layout from '../layouts/Layout.astro';
 				<input type="text" id="path" name="path" value="/foo/bar/baz" />
 			</div>
 		</form>
-		<div>
-			<div class="span4">
-				<h2>RegExp</h2>
-				<p>Express will compile your route into the following regular expression</p>
-				<pre><code id="regexp-display">/^$/g</code></pre>
-			</div>
-			<div class="span4">
-				<h2>Keys</h2>
-				<p>Express will make the following keys available as <code>req.params.keyName</code></p>
-				<div id="keys-display"></div>
-			</div>
-			<div class="span4">
-				<h2>Results</h2>
-				<div id="path-display"></div>
-			</div>
-		</div>
+		<Result />
 	</main>
 	
 	<script>
