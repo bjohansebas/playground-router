@@ -1,34 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Result from '../components/Result.astro';
+import Form from '../components/Form.astro';
 ---
 
 <Layout>
-	<main class="max-w-5xl mx-auto px-4 py-16 h-screen">
-		<form>
-			<div>
-				<label for="version">Version</label>
-				<select id="version">
-					<option value="0.1.x">0.1.x (express v4)</option>
-					<option value="1.x">1.x</option>
-					<option value="2.x">2.x</option>
-					<option value="3.x">3.x</option>
-					<option value="4.x">4.x</option>
-					<option value="5.x">5.x</option>
-					<option value="6.x">6.x</option>
-					<option value="7.x">7.x</option>
-					<option value="8.x">8.x (express v5)</option>
-				</select>
-			</div>
-			<div>
-				<label for="splat">Route</label>
-				<input type="text" id="splat" name="route" value="*"/>
-			</div>
-			<div>
-				<label for="path">Path</label>
-				<input type="text" id="path" name="path" value="/foo/bar/baz" />
-			</div>
-		</form>
+	<main class="max-w-5xl mx-auto px-4 py-16 h-screen space-y-4">
+		<h1 class="text-3xl font-bold text-center">Express Playground Router</h1>
+		<Form />
 		<Result />
 	</main>
 	
