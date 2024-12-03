@@ -1,35 +1,70 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Result from '../components/Result.astro';
-import Form from '../components/Form.astro';
+import Layout from "../layouts/Layout.astro";
+import Result from "../components/Result.astro";
+import Form from "../components/Form.astro";
 ---
 
 <Layout>
-	<main class="max-w-5xl mx-auto px-4 py-16 h-screen space-y-4">
-		<h1 class="text-3xl font-bold text-center">Express Playground Router</h1>
-		<Form />
-		<Result />
-	</main>
-	
-	<script>
-		const input = document.querySelector('#version');
-		let pathToRegexp;
-		const versions = {
-			// @ts-ignore
-  			'0.1.x': import('path-to-regexp-0-1'),
-  			'1.x': import('path-to-regexp-1'),
-			'2.x': import('path-to-regexp-2'),
-			'3.x': import('path-to-regexp-3'),
-			'4.x': import('path-to-regexp-4'),
-			'5.x': import('path-to-regexp-5'),
-			'6.x': import('path-to-regexp-6'),
-			'7.x': import('path-to-regexp-7'),
-			'8.x': import('path-to-regexp-8'),
-		}
-		console.log(input.value)
-		import { match } from 'path-to-regexp-8';
-		const fn = match("/*splat");
+  <main class="max-w-5xl mx-auto px-4 py-16 h-screen space-y-4">
+    <h1 class="text-3xl font-bold text-center">Express Playground Router</h1>
+    <Form />
+    <Result />
+  </main>
 
-		console.log(fn("/bar/baz"))
-	</script>
+  <script>
+    window.addEventListener("load", async () => {
+      const $version = document.querySelector("#version");
+      const route = document.querySelector("#route");
+
+      let pathToRegexp: { default: (arg0: any) => any };
+
+      // @ts-ignore
+      pathToRegexp = await import("path-to-regexp-0-1").then(
+        (module: any) => module
+      );
+
+      let version = "0.1.x";
+
+      const versions = {
+        // @ts-ignore
+        "0.1.x": import("path-to-regexp-0-1"),
+        "1.x": import("path-to-regexp-1"),
+        "2.x": import("path-to-regexp-2"),
+        "3.x": import("path-to-regexp-3"),
+        "4.x": import("path-to-regexp-4"),
+        "5.x": import("path-to-regexp-5"),
+        "6.x": import("path-to-regexp-6"),
+        "7.x": import("path-to-regexp-7"),
+        "8.x": import("path-to-regexp-8"),
+      };
+
+      if ($version) {
+        $version.addEventListener("change", (e) => {
+          // @ts-ignore
+          versions[e.target.value].then((module: any) => {
+            pathToRegexp = module;
+            // @ts-ignore
+            version = e.target.value;
+          });
+        });
+      }
+
+      if (route) {
+        route.addEventListener("input", (e) => {
+          // @ts-ignore
+          const path = e.target.value;
+          if (
+            version === "0.1.x" ||
+            version === "2.x" ||
+            version === "3.x" ||
+            version === "1.x"
+          ) {
+            console.log(pathToRegexp);
+            const result = pathToRegexp.default(path);
+            console.log(result);
+          }
+        });
+      }
+    });
+  </script>
 </Layout>
