@@ -41,6 +41,7 @@ import Form from "../components/Form.astro";
 
       const updateRegex = (input: string) => {
         if ($regexpDisplay) {
+          // @ts-ignore
           $regexpDisplay.innerText = input;
         }
       };
