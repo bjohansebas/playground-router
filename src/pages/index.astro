@@ -15,7 +15,10 @@ import Form from "../components/Form.astro";
     window.addEventListener("load", async () => {
       const $version = document.querySelector("#version");
       const $regexpDisplay = document.querySelector("#regexp-display");
-      const route = document.querySelector("#route");
+      const $route = document.querySelector("#route");
+      const $path = document.querySelector("#path");
+      const $keysDisplay = document.querySelector("#keys-display");
+      let keys: object[] = [];
 
       let pathToRegexp: { default: (arg0: any) => any };
 
@@ -53,29 +56,45 @@ import Form from "../components/Form.astro";
             pathToRegexp = module;
             // @ts-ignore
             version = e.target.value;
+
+            update();
           });
         });
       }
 
-      if (route) {
-        route.addEventListener("input", (e) => {
-          // @ts-ignore
-          const path = e.target.value;
-          if (
-            version === "0.1.x" ||
-            version === "2.x" ||
-            version === "3.x" ||
-            version === "1.x"
-          ) {
-            const result = pathToRegexp.default(path);
-            updateRegex(result);
-          } else if (version !== "8.x") {
-            const regexp = pathToRegexp;
+      if ($route) {
+        $route.addEventListener("input", update);
+      }
 
-            // @ts-ignore
-            updateRegex(regexp.pathToRegexp(path));
-          }
-        });
+      if ($path) {
+        $path.addEventListener("input", update);
+      }
+
+      function update() {
+        // @ts-ignore
+        const routeValue = route.value;
+        if (
+          version === "0.1.x" ||
+          version === "2.x" ||
+          version === "3.x" ||
+          version === "1.x"
+        ) {
+          keys = [];
+          // @ts-ignore
+          const result = pathToRegexp.default(routeValue, keys);
+          updateRegex(result);
+        } else if (version !== "8.x") {
+          const regexp = pathToRegexp;
+          keys = [];
+
+          // @ts-ignore
+          updateRegex(regexp.pathToRegexp(routeValue, keys));
+        }
+
+        if ($keysDisplay) {
+          // @ts-ignore
+          $keysDisplay.innerHTML = `<ol>${keys.map((key, i) => `<li>${i + 1}. ${key.name}</li>`).join("")}</ol>`;
+        }
       }
     });
   </script>

@@ -2,7 +2,7 @@
     <div>
         <h2>RegExp</h2>
         <p>Express will compile your route into the following regular expression</p>
-        <pre><code id="regexp-display">/^$/g</code></pre>
+        <pre class="mt-2"><code id="regexp-display">/^$/g</code></pre>
     </div>
     <div>
         <h2>Keys</h2>
@@ -16,6 +16,14 @@
 </section>
 
 <style>
+
+    div > div {
+        @apply mt-2
+    }
+
+    ol {
+        list-style: initial;
+    }
     h2 {
         @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0
     }
