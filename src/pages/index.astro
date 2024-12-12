@@ -19,6 +19,10 @@ import Form from "../components/Form.astro";
       const $path = document.querySelector("#path");
       const $keysDisplay = document.querySelector("#keys-display");
       const $pathDisplay = document.querySelector("#path-display");
+      const $errorDisplay = document.querySelector("#error-display");
+      const $errorMessage = document.querySelector("#error");
+
+      let error: string = "";
       let keys: object[] = [];
 
       let pathToRegexp: any;
@@ -45,8 +49,7 @@ import Form from "../components/Form.astro";
 
       const updateRegex = (input: string) => {
         if ($regexpDisplay) {
-          // @ts-ignore
-          $regexpDisplay.innerText = input;
+          $regexpDisplay.textContent = input;
         }
       };
 
@@ -84,7 +87,7 @@ import Form from "../components/Form.astro";
             $pathDisplay.classList.add("sucess");
             $pathDisplay.classList.remove("fail");
             // @ts-ignore
-            $pathDisplay.innerText = "The path matches the route";
+            $pathDisplay.textContent = "The path matches the route";
           } else {
             $pathDisplay.classList.add("fail");
             $pathDisplay.classList.remove("sucess");
@@ -93,37 +96,55 @@ import Form from "../components/Form.astro";
       }
 
       function update() {
+        error = "";
+        keys = [];
         // @ts-ignore
         const routeValue = route.value;
-        if (
-          version === "0.1.x" ||
-          version === "2.x" ||
-          version === "3.x" ||
-          version === "1.x"
-        ) {
-          keys = [];
-          // @ts-ignore
-          const result = pathToRegexp.default(routeValue, keys);
-          updateRegex(result);
-          updatePath(result);
-        } else if (version !== "8.x") {
-          const regexp = pathToRegexp;
-          keys = [];
-
-          if (version === "7.x") {
-            keys = regexp.pathToRegexp(routeValue).keys;
-          } else {
+        try {
+          if (
+            version === "0.1.x" ||
+            version === "2.x" ||
+            version === "3.x" ||
+            version === "1.x"
+          ) {
             // @ts-ignore
-            updateRegex(regexp.pathToRegexp(routeValue, keys));
+            const result = pathToRegexp.default(routeValue, keys);
+            updateRegex(result);
+            updatePath(result);
+          } else if (version !== "8.x") {
+            const regexp = pathToRegexp;
+
+            if (version === "7.x") {
+              keys = regexp.pathToRegexp(routeValue).keys;
+            } else {
+              // @ts-ignore
+              updateRegex(regexp.pathToRegexp(routeValue, keys));
+            }
+          } else {
+            const regexpFn = pathToRegexp;
+
+            const { keys: key, regexp } = regexpFn.pathToRegexp(routeValue);
+
+            keys = key;
+
+            updateRegex(regexp);
           }
+        } catch (e: any) {
+          keys = [];
+          error = e.message;
+          if ($errorMessage) {
+            $errorMessage.textContent = error;
+          }
+        }
+
+        if (error) {
+          $pathDisplay?.classList.add("fail");
+          $errorDisplay?.classList.remove("fail");
+          $regexpDisplay?.parentElement?.classList.add("fail");
         } else {
-          const regexpFn = pathToRegexp;
-
-          const { keys: key, regexp } = regexpFn.pathToRegexp(routeValue);
-
-          keys = key;
-
-          updateRegex(regexp);
+          $pathDisplay?.classList.remove("fail");
+          $errorDisplay?.classList.add("fail");
+          $regexpDisplay?.parentElement?.classList.remove("fail");
         }
 
         if ($keysDisplay) {

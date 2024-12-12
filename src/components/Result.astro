@@ -13,6 +13,9 @@
         <h2>Results</h2>
         <div id="path-display"></div>
     </div>
+    <div class="bg-red-400 text-white p-4 rounded-md col-span-2 fail" id="error-display">
+        <p>Error: <span id="error"></span></p>
+    </div>
 </section>
 
 <style>
@@ -26,6 +29,14 @@
     }
     h2 {
         @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0
+    }
+
+    .fail {
+        display: none;
+    }
+
+    pre > .fail {
+        display: none;
     }
 
     code {
