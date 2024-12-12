@@ -1,53 +1,59 @@
 <section class="grid grid-cols-3 gap-4">
-    <div>
-        <h2>RegExp</h2>
-        <p>Express will compile your route into the following regular expression</p>
-        <pre class="mt-2"><code id="regexp-display">/^$/g</code></pre>
-    </div>
-    <div>
-        <h2>Keys</h2>
-        <p>Express will make the following keys available as <code>req.params.keyName</code></p>
-        <div id="keys-display"></div>
-    </div>
-    <div>
-        <h2>Results</h2>
-        <div id="path-display" class="p-2 rounded-md"></div>
-    </div>
-    <div class="bg-red-400 text-white p-4 rounded-md col-span-3 fail" id="error-display">
-        <p>Error: <span id="error"></span></p>
-    </div>
+  <div>
+    <h2>RegExp</h2>
+    <p>Express will compile your route into the following regular expression</p>
+    <pre class="mt-2"><code id="regexp-display">/^$/g</code></pre>
+  </div>
+  <div>
+    <h2>Keys</h2>
+    <p>
+      Express will make the following keys available as <code
+        >req.params.keyName</code
+      >
+    </p>
+    <div id="keys-display"></div>
+  </div>
+  <div>
+    <h2>Results</h2>
+    <div id="path-display" class="rounded-md p-2"></div>
+  </div>
+  <div
+    class="fail col-span-3 rounded-md bg-red-400 p-4 text-white"
+    id="error-display"
+  >
+    <p>Error: <span id="error"></span></p>
+  </div>
 </section>
 
 <style>
+  section > div {
+    @apply space-y-4;
+  }
 
-    section > div {
-        @apply space-y-4
-    }
+  ol {
+    list-style: initial;
+  }
+  h2 {
+    @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+  }
 
-    ol {
-        list-style: initial;
-    }
-    h2 {
-        @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0
-    }
+  .fail {
+    display: none;
+  }
 
-    .fail {
-        display: none;
-    }
+  pre > .fail {
+    display: none;
+  }
 
-    pre > .fail {
-        display: none;
-    }
+  code {
+    @apply rounded-md bg-[#5d5e60] px-2 py-0.5 font-bold;
+  }
 
-    code {
-        @apply bg-[#5d5e60] font-bold px-2 py-0.5 rounded-md
-    }
+  .sucess {
+    @apply bg-[#2d8f6f];
+  }
 
-    .sucess {
-        @apply bg-[#2d8f6f]
-    }
-
-    .not-found {
-        @apply bg-[#d9534f]
-    }
+  .not-found {
+    @apply bg-[#d9534f];
+  }
 </style>

@@ -5,8 +5,8 @@ import Form from "../components/Form.astro";
 ---
 
 <Layout>
-  <main class="max-w-5xl mx-auto px-4 py-16 h-screen space-y-4">
-    <h1 class="text-3xl font-bold text-center">Express Playground Router</h1>
+  <main class="mx-auto h-screen max-w-5xl space-y-4 px-4 py-16">
+    <h1 class="text-center text-3xl font-bold">Express Playground Router</h1>
     <Form />
     <Result />
   </main>
@@ -32,7 +32,7 @@ import Form from "../components/Form.astro";
 
       // @ts-ignore
       pathToRegexp = await import("path-to-regexp-0-1").then(
-        (module: any) => module
+        (module: any) => module,
       );
 
       let version = "0.1.x";
@@ -58,7 +58,7 @@ import Form from "../components/Form.astro";
             version = typeof e === "string" ? e : e.target.value;
 
             update();
-          }
+          },
         );
       };
 
@@ -73,7 +73,7 @@ import Form from "../components/Form.astro";
       if ($end) {
         $end.addEventListener("change", update);
       }
-  
+
       if ($version) {
         // @ts-ignore
         updatePathToRegex($version.value);
@@ -121,7 +121,7 @@ import Form from "../components/Form.astro";
         const routeValue = $route?.value;
         if (version === "0.1.x") {
           // @ts-ignore
-        $textStrict.textContent ="Strict";
+          $textStrict.textContent = "Strict";
         } else {
           // @ts-ignore
 
@@ -129,7 +129,6 @@ import Form from "../components/Form.astro";
         }
         try {
           if (version === "0.1.x") {
-
             const result = pathToRegexp.default(routeValue, keys, opts);
             updateRegex(result);
             updatePath(result);
@@ -138,7 +137,7 @@ import Form from "../components/Form.astro";
 
             const { keys: key, regexp } = regexpFn.pathToRegexp(
               routeValue,
-              opts
+              opts,
             );
 
             keys = key;

@@ -5,39 +5,41 @@ import "@fontsource/geist-sans/600.css";
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Express Playground Router</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Express Playground Router</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 
 <style is:global>
-	html {
-      	font-family: "Geist Sans", system-ui, sans-serif;
-      	scroll-behavior: smooth;
-      	overflow-x: hidden;
-      	overscroll-behavior: none;
-    }
+  html {
+    font-family: "Geist Sans", system-ui, sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    overscroll-behavior: none;
+  }
 
-	body {
-		@apply bg-[#1a1d21] text-white
-	}
+  body {
+    @apply bg-[#1a1d21] text-white;
+  }
 
-	* {
-      @apply border-[#d1d2d3]
-    }
+  * {
+    @apply border-[#d1d2d3];
+  }
 
-	p {
-      @apply text-pretty;
-    }
+  p {
+    @apply text-pretty;
+  }
 
-	select, input, pre {
-		@apply bg-[#5d5e60] px-2 py-1 rounded-md text-white outline-none focus:outline-none focus:border-[#c6c8ca] text-wrap;
-	}
+  select,
+  input,
+  pre {
+    @apply text-wrap rounded-md bg-[#5d5e60] px-2 py-1 text-white outline-none focus:border-[#c6c8ca] focus:outline-none;
+  }
 </style>

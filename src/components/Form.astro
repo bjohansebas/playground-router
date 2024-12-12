@@ -1,44 +1,44 @@
 <form class="flex gap-4">
+  <div>
+    <label for="version">Version</label>
+    <select id="version">
+      <option value="0.1.x">Express v4</option>
+      <option value="8.x" selected>Express v5</option>
+    </select>
+  </div>
+  <div>
+    <label for="splat">Route</label>
+    <input type="text" id="route" name="route" placeholder="*" />
+  </div>
+  <div>
+    <label for="path">Path</label>
+    <input type="text" id="path" name="path" placeholder="/foo/bar/baz" />
+  </div>
+  <div>
+    <label>Options</label>
     <div>
-        <label for="version">Version</label>
-        <select id="version">
-            <option value="0.1.x">Express v4</option>
-            <option value="8.x" selected>Express v5</option>
-        </select>
+      <label id="labelStrict">
+        <input type="checkbox" id="inputStrict" checked />
+        <span>Trailing</span>
+      </label>
+      <label>
+        <input type="checkbox" id="inputSensitive" />
+        Sensitive
+      </label>
+      <label>
+        <input type="checkbox" id="inputEnd" checked />
+        End
+      </label>
     </div>
-    <div>
-        <label for="splat">Route</label>
-        <input type="text" id="route" name="route" placeholder="*"/>
-    </div>
-    <div>
-        <label for="path">Path</label>
-        <input type="text" id="path" name="path" placeholder="/foo/bar/baz" />
-    </div>
-    <div>
-        <label>Options</label>
-        <div>
-          <label id="labelStrict">
-            <input type="checkbox" id="inputStrict" checked>
-            <span>Trailing</span>
-          </label>
-          <label>
-            <input type="checkbox" id="inputSensitive">
-            Sensitive
-          </label>
-          <label>
-            <input type="checkbox" id="inputEnd" checked>
-            End
-          </label>
-        </div>
-    </div>
+  </div>
 </form>
 
 <style>
-    div {
-        @apply flex flex-col gap-2
-    }
+  div {
+    @apply flex flex-col gap-2;
+  }
 
-    label {
-        @apply font-bold text-lg
-    }
+  label {
+    @apply text-lg font-bold;
+  }
 </style>
