@@ -78,12 +78,12 @@ import Form from "../components/Form.astro";
           // @ts-ignore
           if (regexp.test($path.value)) {
             $pathDisplay.classList.add("sucess");
-            $pathDisplay.classList.remove("fail");
-            // @ts-ignore
+            $pathDisplay.classList.remove("not-found");
             $pathDisplay.textContent = "The path matches the route";
           } else {
-            $pathDisplay.classList.add("fail");
+            $pathDisplay.classList.add("not-found");
             $pathDisplay.classList.remove("sucess");
+            $pathDisplay.textContent = "The path does not match the route";
           }
         }
       }
@@ -107,6 +107,7 @@ import Form from "../components/Form.astro";
             keys = key;
 
             updateRegex(regexp);
+            updatePath(regexp);
           }
         } catch (e: any) {
           keys = [];

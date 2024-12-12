@@ -11,9 +11,9 @@
     </div>
     <div>
         <h2>Results</h2>
-        <div id="path-display"></div>
+        <div id="path-display" class="p-2 rounded-md"></div>
     </div>
-    <div class="bg-red-400 text-white p-4 rounded-md col-span-2 fail" id="error-display">
+    <div class="bg-red-400 text-white p-4 rounded-md col-span-3 fail" id="error-display">
         <p>Error: <span id="error"></span></p>
     </div>
 </section>
@@ -41,5 +41,13 @@
 
     code {
         @apply bg-[#5d5e60] font-bold px-2 py-0.5 rounded-md
+    }
+
+    .sucess {
+        @apply bg-[#2d8f6f]
+    }
+
+    .not-found {
+        @apply bg-[#d9534f]
     }
 </style>
