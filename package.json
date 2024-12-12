@@ -14,13 +14,6 @@
     "@fontsource/geist-sans": "^5.1.0",
     "astro": "^4.16.17",
     "path-to-regexp-0-1": "npm:path-to-regexp@~0.1.12",
-    "path-to-regexp-1": "npm:path-to-regexp@^1.9.0",
-    "path-to-regexp-2": "npm:path-to-regexp@^2.4.0",
-    "path-to-regexp-3": "npm:path-to-regexp@^3.3.0",
-    "path-to-regexp-4": "npm:path-to-regexp@^4.0.5",
-    "path-to-regexp-5": "npm:path-to-regexp@^5.0.0",
-    "path-to-regexp-6": "npm:path-to-regexp@^6.3.0",
-    "path-to-regexp-7": "npm:path-to-regexp@^7.2.0",
     "path-to-regexp-8": "npm:path-to-regexp@^8.2.0",
     "tailwindcss": "^3.4.16",
     "typescript": "^5.7.2"

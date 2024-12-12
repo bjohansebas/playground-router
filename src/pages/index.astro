@@ -37,13 +37,6 @@ import Form from "../components/Form.astro";
       const versions = {
         // @ts-ignore
         "0.1.x": import("path-to-regexp-0-1"),
-        "1.x": import("path-to-regexp-1"),
-        "2.x": import("path-to-regexp-2"),
-        "3.x": import("path-to-regexp-3"),
-        "4.x": import("path-to-regexp-4"),
-        "5.x": import("path-to-regexp-5"),
-        "6.x": import("path-to-regexp-6"),
-        "7.x": import("path-to-regexp-7"),
         "8.x": import("path-to-regexp-8"),
       };
 
@@ -99,27 +92,13 @@ import Form from "../components/Form.astro";
         error = "";
         keys = [];
         // @ts-ignore
-        const routeValue = route.value;
+        const routeValue = $route?.value;
+
         try {
-          if (
-            version === "0.1.x" ||
-            version === "2.x" ||
-            version === "3.x" ||
-            version === "1.x"
-          ) {
-            // @ts-ignore
+          if (version === "0.1.x") {
             const result = pathToRegexp.default(routeValue, keys);
             updateRegex(result);
             updatePath(result);
-          } else if (version !== "8.x") {
-            const regexp = pathToRegexp;
-
-            if (version === "7.x") {
-              keys = regexp.pathToRegexp(routeValue).keys;
-            } else {
-              // @ts-ignore
-              updateRegex(regexp.pathToRegexp(routeValue, keys));
-            }
           } else {
             const regexpFn = pathToRegexp;
 
