@@ -22,13 +22,12 @@ import Form from "../components/Form.astro";
       const $errorDisplay = document.querySelector("#error-display");
       const $errorMessage = document.querySelector("#error");
       const $strict = document.querySelector("#inputStrict");
+      const $textStrict = document.querySelector("#labelStrict span");
       const $sensitive = document.querySelector("#inputSensitive");
       const $end = document.querySelector("#inputEnd");
-      const $trailing = document.querySelector("#inputTrailing");
 
       let error: string = "";
       let keys: object[] = [];
-
       let pathToRegexp: any;
 
       // @ts-ignore
@@ -74,11 +73,7 @@ import Form from "../components/Form.astro";
       if ($end) {
         $end.addEventListener("change", update);
       }
-
-      if ($trailing) {
-        $trailing.addEventListener("change", update);
-      }
-
+  
       if ($version) {
         // @ts-ignore
         updatePathToRegex($version.value);
@@ -117,30 +112,24 @@ import Form from "../components/Form.astro";
           // @ts-ignore
           end: $end.checked,
           // @ts-ignore
-
           strict: $strict.checked,
           // @ts-ignore
-
-          trailing: $trailing.checked,
+          trailing: $strict.checked,
         };
 
         // @ts-ignore
         const routeValue = $route?.value;
-
         if (version === "0.1.x") {
           // @ts-ignore
-          $strict.disabled = false;
-          // @ts-ignore
-          $trailing.disabled = true;
+        $textStrict.textContent ="Strict";
         } else {
           // @ts-ignore
-          $strict.disabled = true;
-          // @ts-ignore
-          $trailing.disabled = false;
-        }
 
+          $textStrict.textContent = "Trailing";
+        }
         try {
           if (version === "0.1.x") {
+
             const result = pathToRegexp.default(routeValue, keys, opts);
             updateRegex(result);
             updatePath(result);
