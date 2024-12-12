@@ -50,17 +50,23 @@ import Form from "../components/Form.astro";
         }
       };
 
-      if ($version) {
-        $version.addEventListener("change", (e) => {
-          // @ts-ignore
-          versions[e.target.value].then((module: any) => {
+      const updatePathToRegex = (e: any) => {
+        // @ts-ignore
+        versions[typeof e === "string" ? e : e.target.value].then(
+          (module: any) => {
             pathToRegexp = module;
             // @ts-ignore
-            version = e.target.value;
+            version = typeof e === "string" ? e : e.target.value;
 
             update();
-          });
-        });
+          }
+        );
+      };
+
+      if ($version) {
+        // @ts-ignore
+        updatePathToRegex($version.value);
+        $version.addEventListener("change", updatePathToRegex);
       }
 
       if ($route) {
@@ -72,19 +78,18 @@ import Form from "../components/Form.astro";
       }
 
       function updatePath(regexp: RegExp) {
-        if($pathDisplay) {
+        if ($pathDisplay) {
           // @ts-ignore
-        if (regexp.test($path.value)) {
-          $pathDisplay.classList.add("sucess")
-          $pathDisplay.classList.remove("fail")
-          // @ts-ignore
-          $pathDisplay.innerText = "The path matches the route";
-        } else {
-          $pathDisplay.classList.add("fail")
-          $pathDisplay.classList.remove("sucess")
+          if (regexp.test($path.value)) {
+            $pathDisplay.classList.add("sucess");
+            $pathDisplay.classList.remove("fail");
+            // @ts-ignore
+            $pathDisplay.innerText = "The path matches the route";
+          } else {
+            $pathDisplay.classList.add("fail");
+            $pathDisplay.classList.remove("sucess");
+          }
         }
-      }
-
       }
 
       function update() {
