@@ -18,9 +18,10 @@ import Form from "../components/Form.astro";
       const $route = document.querySelector("#route");
       const $path = document.querySelector("#path");
       const $keysDisplay = document.querySelector("#keys-display");
+      const $pathDisplay = document.querySelector("#path-display");
       let keys: object[] = [];
 
-      let pathToRegexp: { default: (arg0: any) => any };
+      let pathToRegexp: any;
 
       // @ts-ignore
       pathToRegexp = await import("path-to-regexp-0-1").then(
@@ -70,6 +71,22 @@ import Form from "../components/Form.astro";
         $path.addEventListener("input", update);
       }
 
+      function updatePath(regexp: RegExp) {
+        if($pathDisplay) {
+          // @ts-ignore
+        if (regexp.test($path.value)) {
+          $pathDisplay.classList.add("sucess")
+          $pathDisplay.classList.remove("fail")
+          // @ts-ignore
+          $pathDisplay.innerText = "The path matches the route";
+        } else {
+          $pathDisplay.classList.add("fail")
+          $pathDisplay.classList.remove("sucess")
+        }
+      }
+
+      }
+
       function update() {
         // @ts-ignore
         const routeValue = route.value;
@@ -83,12 +100,25 @@ import Form from "../components/Form.astro";
           // @ts-ignore
           const result = pathToRegexp.default(routeValue, keys);
           updateRegex(result);
+          updatePath(result);
         } else if (version !== "8.x") {
           const regexp = pathToRegexp;
           keys = [];
 
-          // @ts-ignore
-          updateRegex(regexp.pathToRegexp(routeValue, keys));
+          if (version === "7.x") {
+            keys = regexp.pathToRegexp(routeValue).keys;
+          } else {
+            // @ts-ignore
+            updateRegex(regexp.pathToRegexp(routeValue, keys));
+          }
+        } else {
+          const regexpFn = pathToRegexp;
+
+          const { keys: key, regexp } = regexpFn.pathToRegexp(routeValue);
+
+          keys = key;
+
+          updateRegex(regexp);
         }
 
         if ($keysDisplay) {
