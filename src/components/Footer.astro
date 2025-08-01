@@ -1,0 +1,43 @@
+---
+import { Github, Twitter, Linkedin } from "lucide-astro";
+
+const SOCIAL_MEDIA = [
+  { name: "Github", href: "https://github.com/bjohansebas", icon: Github },
+  { name: "Twitter", href: "https://x.com/bjohansebas", icon: Twitter },
+  {
+    name: "Linkedin",
+    href: "https://www.linkedin.com/in/bjohansebas/",
+    icon: Linkedin,
+  },
+];
+---
+
+<footer class="flex w-full items-center justify-center gap-5">
+  <p class="h-full">Building software with ♥ from 🇨🇴 to the world.</p>
+  <div class="flex items-center justify-center gap-3">
+    <a
+      href="https://github.com/sponsors/bjohansebas"
+      class="w-fil border-muted relative inline-flex h-9 items-center justify-center rounded-md border px-3"
+    >
+      Support me
+    </a>
+    {
+      SOCIAL_MEDIA.map(({ name, href, ...social }) => (
+        <a
+          href={href}
+          target="_blank"
+          class="border-muted group relative inline-flex h-9 w-9 items-center justify-center rounded-md border"
+        >
+          <div class="absolute right-[8px]">
+            {
+              <social.icon
+                class="size-4 text-inherit"
+                aria-label={`${name} icon`}
+              />
+            }
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</footer>
