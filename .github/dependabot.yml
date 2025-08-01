@@ -16,6 +16,7 @@ updates:
         patterns:
           - "@tailwindcss/*"
           - "tailwindcss"
+          - "@astrojs/tailwind"
       formatting:
         patterns:
           - "prettier-*"
